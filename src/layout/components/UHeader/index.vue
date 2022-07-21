@@ -33,7 +33,7 @@
           :options="dropDownOptions"
           @select="handleSelect"
         >
-          <span>{{ userInfo }}</span>
+          <span>{{ userInfo.realName }}</span>
         </n-dropdown>
       </div>
     </div>
@@ -76,7 +76,7 @@ const isShowTag = computed(() => {
 })
 
 const userInfo = computed(() => {
-  return useUser.name
+  return useUser.userInfo
 })
 
 const toGitHub = () => {

@@ -3,6 +3,7 @@
     <div class="login">
       <h1>登录</h1>
       <p>用户名<input type="text" /></p>
+      <p>密码<input type="password" /></p>
       <n-button round secondary type="info" @click="login">登录</n-button>
     </div>
   </n-space>
@@ -10,17 +11,41 @@
 
 <script setup lang="ts">
 import request from '@/utils/axios'
+import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
 
 const router = useRouter()
+const message = useMessage()
+const useUser = useUserStore()
 
-const login = function () {
-  // let result = await request({
-  //   url: 'xxxx/xxx',
-  //   method: 'get',
+const login = async function () {
+  const param = {
+    username: 'username',
+    password: 'password',
+  }
+  await useUser
+    .login(param.username, param.password)
+    .then(() => {
+      console.log('login vue')
+      router.push('/home')
+    })
+    .catch((err) => {
+      console.log(err, 34)
+      message.error(err.message)
+    })
+  await useUser.getUserInfo().then((res) => {
+    console.log(res)
+  })
+  // await request({
+  //   url: 'api/login',
+  //   method: 'post',
+  // }).then((res) => {
+  //   const { data } = res
+  //   console.log(res)
+  //   message.success(data.msg)
+  //   router.push('/home')
   // })
-  // console.log(result)
-  router.push('/homeBoard')
 }
 </script>
 
