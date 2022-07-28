@@ -1,45 +1,47 @@
 <template>
-  <div
-    class="m-layout-header"
-    :style="{
-      left: `${mode === 'horizontal' ? 0 : isCollapse ? '56' : '210'}px`,
-    }"
-  >
+  <n-loading-bar-provider>
     <div
-      class="header"
-      :class="{
-        transverseMenu: mode === 'horizontal',
+      class="m-layout-header"
+      :style="{
+        left: `${mode === 'horizontal' ? 0 : isCollapse ? '56' : '210'}px`,
       }"
     >
-      <menu-slide v-if="mode === 'horizontal'" />
-      <div v-if="mode === 'vertical'" class="left">
-        <div>
-          <el-icon v-if="isCollapse" class="icon" @click="handleCollapse"
-            ><expand
-          /></el-icon>
-          <el-icon v-else class="icon" @click="handleCollapse"
-            ><fold
-          /></el-icon>
+      <div
+        class="header"
+        :class="{
+          transverseMenu: mode === 'horizontal',
+        }"
+      >
+        <menu-slide v-if="mode === 'horizontal'" />
+        <div v-if="mode === 'vertical'" class="left">
+          <div>
+            <n-icon v-if="!isCollapse" size="30" @click="handleCollapse">
+              <LayoutSidebarRightExpand />
+            </n-icon>
+            <n-icon v-else size="30" @click="handleCollapse">
+              <LayoutSidebarRightCollapse />
+            </n-icon>
+          </div>
+          <!-- <u-hamburger /> -->
         </div>
-        <!-- <u-hamburger /> -->
+        <div class="right">
+          <el-button type="text" style="margin-right: 10px" @click="toGitHub"
+            >Github地址</el-button
+          >
+          <!-- <u-screen-full /> -->
+          <n-dropdown
+            trigger="click"
+            :options="dropDownOptions"
+            @select="handleSelect"
+          >
+            <span>{{ userInfo.realName }}</span>
+          </n-dropdown>
+        </div>
       </div>
-      <div class="right">
-        <el-button type="text" style="margin-right: 10px" @click="toGitHub"
-          >Github地址</el-button
-        >
-        <!-- <u-screen-full /> -->
-        <n-dropdown
-          trigger="click"
-          :options="dropDownOptions"
-          @select="handleSelect"
-        >
-          <span>{{ userInfo.realName }}</span>
-        </n-dropdown>
-      </div>
+      <!-- <tag-views v-if="isShowTag" /> -->
+      <personal ref="person" />
     </div>
-    <!-- <tag-views v-if="isShowTag" /> -->
-    <personal ref="person" />
-  </div>
+  </n-loading-bar-provider>
 </template>
 
 <script lang="ts" setup>
@@ -50,10 +52,20 @@ import Personal from './Personal.vue'
 import MenuSlide from '../Sidebar/menuSlide.vue'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { DropdownOption, useDialog, useMessage } from 'naive-ui'
+import {
+  DropdownOption,
+  useDialog,
+  useMessage,
+  useLoadingBar,
+  NLoadingBarProvider,
+} from 'naive-ui'
 import { appStore } from '@/store/app'
 import { settingStore } from '@/store/setting'
 import { useUserStore } from '@/store/user'
+import {
+  LayoutSidebarRightExpand,
+  LayoutSidebarRightCollapse,
+} from '@vicons/tabler'
 
 const person = ref()
 const router = useRouter()
@@ -63,6 +75,7 @@ const message = useMessage()
 const app = appStore()
 const setting = settingStore()
 const useUser = useUserStore()
+const loadingBar = useLoadingBar()
 
 const isCollapse = computed(() => {
   return !app.isCollapse
@@ -80,7 +93,8 @@ const userInfo = computed(() => {
 })
 
 const toGitHub = () => {
-  window.open('https://github.com/wilding96')
+  // window.open('https://github.com/wilding96')
+  loadingBar.start()
 }
 const logOut = async () => {
   dialog.warning({
@@ -89,7 +103,9 @@ const logOut = async () => {
     negativeText: '取消',
     type: 'warning',
     onPositiveClick: () => {
-      message.success('确定')
+      useUser.logOut()
+      router.push('/login')
+      message.success('退出登录成功！')
     },
     onNegativeClick: () => {
       message.error('不确定')
@@ -140,8 +156,7 @@ const handleCollapse = () => {
     left: 0 !important;
   }
 }
-.icon {
-  font-size: 24px;
+.n-icon {
   cursor: pointer;
 }
 .header {

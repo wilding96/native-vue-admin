@@ -14,15 +14,18 @@
   "dependencies": {
     "@vueuse/core": "^8.5.0",
     "axios": "^0.27.2",
+    "js-cookie": "^3.0.1",
+    "naive-ui": "^2.23.2",
     "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.6.3",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.15",
-    "naive-ui": "^2.23.2"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@types/node": "^17.0.35",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
+    "@vicons/tabler": "^0.12.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",

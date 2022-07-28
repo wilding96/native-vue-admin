@@ -4,6 +4,7 @@ specifiers:
   '@types/node': ^17.0.35
   '@typescript-eslint/eslint-plugin': ^5.26.0
   '@typescript-eslint/parser': ^5.26.0
+  '@vicons/tabler': ^0.12.0
   '@vitejs/plugin-vue': ^2.3.3
   '@vueuse/core': ^8.5.0
   axios: ^0.27.2
@@ -11,8 +12,10 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-vue: ^9.0.1
+  js-cookie: ^3.0.1
   naive-ui: ^2.23.2
   pinia: ^2.0.14
+  pinia-plugin-persistedstate: ^1.6.3
   prettier: ^2.6.2
   sass: ^1.52.1
   typescript: ^4.5.4
@@ -24,8 +27,10 @@ specifiers:
 dependencies:
   '@vueuse/core': 8.5.0_vue@3.2.36
   axios: 0.27.2
+  js-cookie: 3.0.1
   naive-ui: 2.29.0_vue@3.2.36
   pinia: 2.0.14_7gwbvmtszsbbeay4sidijbp26i
+  pinia-plugin-persistedstate: 1.6.3_pinia@2.0.14
   vue: 3.2.36
   vue-router: 4.0.15_vue@3.2.36
 
@@ -33,6 +38,7 @@ devDependencies:
   '@types/node': 17.0.35
   '@typescript-eslint/eslint-plugin': 5.26.0_gu4clceiw6ditaem5r577qrdpi
   '@typescript-eslint/parser': 5.26.0_utdtartgf6fqqgkivzeynh76la
+  '@vicons/tabler': 0.12.0
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.36
   eslint: 8.16.0
   eslint-config-prettier: 8.5.0_eslint@8.16.0
@@ -289,6 +295,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.26.0
       eslint-visitor-keys: 3.3.0
+    dev: true
+
+  /@vicons/tabler/0.12.0:
+    resolution: {integrity: sha512-3+wUFuxb7e8OzZ8Wryct1pzfA2vyoF4lwW98O9s27ZrfCGaJGNmqG+q8A7vQ92Mf+COCgxpK+rhNPTtTvaU6qw==}
     dev: true
 
   /@vitejs/plugin-vue/2.3.3_vite@2.9.9+vue@3.2.36:
@@ -1310,6 +1320,11 @@ packages:
       pretty-format: 27.5.1
     dev: false
 
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
+    dev: false
+
   /js-yaml/4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
@@ -1487,6 +1502,14 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
     dev: true
+
+  /pinia-plugin-persistedstate/1.6.3_pinia@2.0.14:
+    resolution: {integrity: sha512-vwxUca3DZKW6+wnGsgu6hA0ESVKoLovF8vH1jMOPBhaH4VpCSTgn5AsprTxXyg3uMk047m0B+NggeMTcCC8H6w==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.14_7gwbvmtszsbbeay4sidijbp26i
+    dev: false
 
   /pinia/2.0.14_7gwbvmtszsbbeay4sidijbp26i:
     resolution: {integrity: sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==}

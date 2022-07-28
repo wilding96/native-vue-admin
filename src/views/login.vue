@@ -28,6 +28,7 @@ const login = async function () {
     .login(param.username, param.password)
     .then(() => {
       console.log('login vue')
+      message.success('登录成功！')
       router.push('/home')
     })
     .catch((err) => {

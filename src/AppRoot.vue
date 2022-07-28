@@ -6,12 +6,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useMessage } from 'naive-ui'
+import { useMessage, useLoadingBar } from 'naive-ui'
 
 export default defineComponent({
   name: 'AppRoot',
   setup() {
     window.$message = useMessage()
+    window.$loadingBar = useLoadingBar()
   },
 })
 </script>

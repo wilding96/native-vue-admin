@@ -12,7 +12,7 @@ export default defineConfig({
   },
   plugins: [vue()],
   server: {
-    port: 8090, //启动端口
+    port: 8888, //启动端口
     hmr: {
       host: '127.0.0.1',
       port: 8090,

@@ -5,6 +5,8 @@ import store from './store'
 import NaiveUI from './components/naive-ui'
 import '@/styles/index.scss' // global css
 
+import '@/router/permission'
+
 const app = createApp(App)
 
 app.use(store)
